@@ -34,4 +34,10 @@ public class UsuarioController {
         // fazer update no usuário no banco
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete() {
+        // recuperar o usuário do banco
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }
