@@ -29,6 +29,13 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK).body(usuarios);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioResponse> findById() {
+        // buscar usuário no banco
+        UsuarioResponse usuarioResponse = new UsuarioResponse(99L, "usuario", "usuario@email");
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioResponse);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@RequestBody UpdateUsuarioRequest updateUsuarioRequest) {
         // fazer update no usuário no banco
