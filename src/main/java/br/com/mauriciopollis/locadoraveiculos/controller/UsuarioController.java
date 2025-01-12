@@ -2,13 +2,14 @@ package br.com.mauriciopollis.locadoraveiculos.controller;
 
 import br.com.mauriciopollis.locadoraveiculos.dto.request.CreateUsuarioRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.CreateUsuarioResponse;
+import br.com.mauriciopollis.locadoraveiculos.dto.response.UsuarioResponse;
 import br.com.mauriciopollis.locadoraveiculos.entity.Usuario;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -18,5 +19,13 @@ public class UsuarioController {
     public ResponseEntity<CreateUsuarioResponse> create(@RequestBody CreateUsuarioRequest createUsuarioRequest) {
         CreateUsuarioResponse createUsuarioResponse = new CreateUsuarioResponse(10L);
         return ResponseEntity.status(HttpStatus.CREATED).body(createUsuarioResponse);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UsuarioResponse>> findAll() {
+        List<UsuarioResponse> usuarios = new ArrayList<>();
+        usuarios.add(new UsuarioResponse(1L, "usuario1", "usuario1@email"));
+        usuarios.add(new UsuarioResponse(2L, "usuario2", "usuario2@email"));
+        return ResponseEntity.status(HttpStatus.OK).body(usuarios);
     }
 }
