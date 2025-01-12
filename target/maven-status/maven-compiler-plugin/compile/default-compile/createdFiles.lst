@@ -1,1 +1,7 @@
+br\com\mauriciopollis\locadoraveiculos\dto\request\CreateUsuarioRequest.class
+br\com\mauriciopollis\locadoraveiculos\entity\Locacao.class
+br\com\mauriciopollis\locadoraveiculos\entity\Usuario.class
+br\com\mauriciopollis\locadoraveiculos\controller\UsuarioController.class
+br\com\mauriciopollis\locadoraveiculos\entity\Veiculo.class
 br\com\mauriciopollis\locadoraveiculos\LocadoraveiculosApplication.class
+br\com\mauriciopollis\locadoraveiculos\dto\response\CreateUsuarioResponse.class
