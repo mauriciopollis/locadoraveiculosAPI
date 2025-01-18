@@ -56,6 +56,15 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- Spring Data -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-bom</artifactId>
+			<version>2024.1.2</version>
+			<scope>import</scope>
+			<type>pom</type>
+		</dependency>
+
 	</dependencies>
 
 	<build>
