@@ -1,6 +1,7 @@
 package br.com.mauriciopollis.locadoraveiculos.service;
 
 import br.com.mauriciopollis.locadoraveiculos.dto.request.CreateUsuarioRequest;
+import br.com.mauriciopollis.locadoraveiculos.dto.request.UpdateUsuarioRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.CreateUsuarioResponse;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.UsuarioResponse;
 import br.com.mauriciopollis.locadoraveiculos.entity.Usuario;
@@ -43,5 +44,17 @@ public class UsuarioService {
             throw new ValidacaoException("Usuário com id " + id + " não existe");
         }
         return new UsuarioResponse(usuarioDb.get().getId(), usuarioDb.get().getNome(), usuarioDb.get().getEmail());
+    }
+
+    public void update(Long id, UpdateUsuarioRequest updateUsuarioRequest) {
+        Optional<Usuario> usuarioDb = usuarioRepository.findById(id);
+        if(usuarioDb.isEmpty()) {
+            throw new ValidacaoException("Usuário de id " + id + " não existe");
+        }
+        Usuario usuario = usuarioDb.get();
+        if(updateUsuarioRequest.nome() != null) usuario.setNome(updateUsuarioRequest.nome());
+        if(updateUsuarioRequest.email() != null) usuario.setEmail(updateUsuarioRequest.email());
+        if(updateUsuarioRequest.senha() != null) usuario.setSenha(updateUsuarioRequest.senha());
+        usuarioRepository.save(usuario);
     }
 }

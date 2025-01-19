@@ -40,9 +40,9 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody UpdateUsuarioRequest updateUsuarioRequest) {
-        // fazer update no usuário no banco
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody UpdateUsuarioRequest updateUsuarioRequest) {
+        usuarioService.update(id, updateUsuarioRequest);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
