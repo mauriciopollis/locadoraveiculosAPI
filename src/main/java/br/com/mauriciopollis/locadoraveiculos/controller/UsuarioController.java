@@ -34,9 +34,8 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioResponse> findById() {
-        // buscar usuário no banco
-        UsuarioResponse usuarioResponse = new UsuarioResponse(99L, "usuario", "usuario@email");
+    public ResponseEntity<UsuarioResponse> findById(@PathVariable(name = "id") Long id) {
+        UsuarioResponse usuarioResponse = usuarioService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(usuarioResponse);
     }
 

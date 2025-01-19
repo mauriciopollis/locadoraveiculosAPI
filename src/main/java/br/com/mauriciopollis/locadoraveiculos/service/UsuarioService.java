@@ -4,11 +4,13 @@ import br.com.mauriciopollis.locadoraveiculos.dto.request.CreateUsuarioRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.CreateUsuarioResponse;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.UsuarioResponse;
 import br.com.mauriciopollis.locadoraveiculos.entity.Usuario;
+import br.com.mauriciopollis.locadoraveiculos.exception.ValidacaoException;
 import br.com.mauriciopollis.locadoraveiculos.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -33,5 +35,13 @@ public class UsuarioService {
                 .map(u -> new UsuarioResponse(u.getId(), u.getNome(), u.getEmail()))
                 .toList();
         return usuarioResponses;
+    }
+
+    public UsuarioResponse findById(Long id) {
+        Optional<Usuario> usuarioDb = usuarioRepository.findById(id);
+        if(usuarioDb.isEmpty()) {
+            throw new ValidacaoException("Usuário com id " + id + " não existe");
+        }
+        return new UsuarioResponse(usuarioDb.get().getId(), usuarioDb.get().getNome(), usuarioDb.get().getEmail());
     }
 }
