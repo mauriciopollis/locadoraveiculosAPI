@@ -28,10 +28,8 @@ public class UsuarioController {
 
     @GetMapping
     public ResponseEntity<List<UsuarioResponse>> findAll() {
-        List<UsuarioResponse> usuarios = new ArrayList<>();
-        usuarios.add(new UsuarioResponse(1L, "usuario1", "usuario1@email"));
-        usuarios.add(new UsuarioResponse(2L, "usuario2", "usuario2@email"));
-        return ResponseEntity.status(HttpStatus.OK).body(usuarios);
+        List<UsuarioResponse> usuarioResponses = usuarioService.getAllUsers();
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioResponses);
     }
 
     @GetMapping("/{id}")
