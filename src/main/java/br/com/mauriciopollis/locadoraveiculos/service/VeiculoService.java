@@ -1,6 +1,7 @@
 package br.com.mauriciopollis.locadoraveiculos.service;
 
 import br.com.mauriciopollis.locadoraveiculos.dto.request.veiculo.CreateVeiculoRequest;
+import br.com.mauriciopollis.locadoraveiculos.dto.request.veiculo.UpdateVeiculoRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.veiculo.CreateVeiculoResponse;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.veiculo.VeiculoResponse;
 import br.com.mauriciopollis.locadoraveiculos.entity.Veiculo;
@@ -61,6 +62,16 @@ public class VeiculoService {
                 veiculoDb.get().getTipo()
         );
         return veiculoResponse;
+    }
 
+    public void update(Long id, UpdateVeiculoRequest updateVeiculoRequest) {
+        Optional<Veiculo> veiculoDb = veiculoRepository.findById(id);
+        if(veiculoDb.isEmpty()) {
+            throw new ValidacaoException("Veículo de id "+ id + " não existe");
+        }
+        Veiculo veiculo = veiculoDb.get();
+        if(updateVeiculoRequest.placa() != null) veiculo.setPlaca(updateVeiculoRequest.placa());
+        if(updateVeiculoRequest.diaria() != null) veiculo.setDiaria(updateVeiculoRequest.diaria());
+        veiculoRepository.save(veiculo);
     }
 }

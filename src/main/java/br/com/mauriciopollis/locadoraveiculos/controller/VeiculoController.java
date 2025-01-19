@@ -1,10 +1,12 @@
 package br.com.mauriciopollis.locadoraveiculos.controller;
 
 import br.com.mauriciopollis.locadoraveiculos.dto.request.veiculo.CreateVeiculoRequest;
+import br.com.mauriciopollis.locadoraveiculos.dto.request.veiculo.UpdateVeiculoRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.veiculo.CreateVeiculoResponse;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.veiculo.VeiculoResponse;
 import br.com.mauriciopollis.locadoraveiculos.service.VeiculoService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +36,11 @@ public class VeiculoController {
     public ResponseEntity<VeiculoResponse> findById(@PathVariable(name = "id") Long id) {
         VeiculoResponse veiculoResponse = veiculoService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(veiculoResponse);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody UpdateVeiculoRequest updateVeiculoRequest) {
+        veiculoService.update(id, updateVeiculoRequest);
+        return ResponseEntity.noContent().build();
     }
 }
