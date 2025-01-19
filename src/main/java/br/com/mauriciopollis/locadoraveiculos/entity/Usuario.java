@@ -4,11 +4,13 @@ import br.com.mauriciopollis.locadoraveiculos.entity.enums.TipoUsuarioEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "usuario")
 public class Usuario {

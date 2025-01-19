@@ -4,6 +4,8 @@ import br.com.mauriciopollis.locadoraveiculos.dto.request.CreateUsuarioRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.request.UpdateUsuarioRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.CreateUsuarioResponse;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.UsuarioResponse;
+import br.com.mauriciopollis.locadoraveiculos.service.UsuarioService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +15,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
+@RequiredArgsConstructor
 public class UsuarioController {
+
+    private final UsuarioService usuarioService;
 
     @PostMapping
     public ResponseEntity<CreateUsuarioResponse> create(@RequestBody CreateUsuarioRequest createUsuarioRequest) {
-        CreateUsuarioResponse createUsuarioResponse = new CreateUsuarioResponse(10L);
+        CreateUsuarioResponse createUsuarioResponse = usuarioService.save(createUsuarioRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createUsuarioResponse);
     }
 

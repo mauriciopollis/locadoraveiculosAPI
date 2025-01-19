@@ -1,0 +1,9 @@
+2025-01-19 08:56:14.504209-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+insert into usuario (email,nome,senha,tipo,id) values (?,?,?,?,default) [42104-224]
+2025-01-19 08:57:28.346219-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+insert into usuario (email,nome,senha,tipo,id) values (?,?,?,?,default) [42104-224]
+2025-01-19 08:59:59.421105-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+insert into usuario (email,nome,senha,tipo,id) values (?,?,?,?,default) [42104-224]
