@@ -1,6 +1,7 @@
 package br.com.mauriciopollis.locadoraveiculos.service;
 
 import br.com.mauriciopollis.locadoraveiculos.dto.request.locacao.CreateLocacaoRequest;
+import br.com.mauriciopollis.locadoraveiculos.dto.request.locacao.UpdateLocacaoRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.locacao.CreateLocacaoResponse;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.locacao.LocacaoResponse;
 import br.com.mauriciopollis.locadoraveiculos.entity.Locacao;
@@ -63,5 +64,34 @@ public class LocacaoService {
                 )
                 .toList();
         return locacaoResponses;
+    }
+
+    public LocacaoResponse findById(Long id) {
+        Optional<Locacao> locacaoDb = locacaoRepository.findById(id);
+        if(locacaoDb.isEmpty()) {
+            throw new ValidacaoException("Locação com id "+ id + " não existe");
+        }
+
+        LocacaoResponse locacaoResponse = new LocacaoResponse(
+                locacaoDb.get().getId(),
+                locacaoDb.get().getCliente(),
+                locacaoDb.get().getVeiculo(),
+                locacaoDb.get().getDataInicio(),
+                locacaoDb.get().getDataFinal(),
+                locacaoDb.get().getStatus()
+        );
+
+        return locacaoResponse;
+    }
+
+    public void update(Long id, UpdateLocacaoRequest updateLocacaoRequest) {
+        Optional<Locacao> locacaoDb = locacaoRepository.findById(id);
+        if(locacaoDb.isEmpty()) {
+            throw new ValidacaoException("Locação de id " + id + " não existe");
+        }
+
+        Locacao locacao = locacaoDb.get();
+        locacao.setStatus(updateLocacaoRequest.status());
+        locacaoRepository.save(locacaoDb.get());
     }
 }

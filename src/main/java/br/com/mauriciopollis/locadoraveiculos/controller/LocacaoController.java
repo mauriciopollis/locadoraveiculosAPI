@@ -1,6 +1,7 @@
 package br.com.mauriciopollis.locadoraveiculos.controller;
 
 import br.com.mauriciopollis.locadoraveiculos.dto.request.locacao.CreateLocacaoRequest;
+import br.com.mauriciopollis.locadoraveiculos.dto.request.locacao.UpdateLocacaoRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.locacao.CreateLocacaoResponse;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.locacao.LocacaoResponse;
 import br.com.mauriciopollis.locadoraveiculos.service.LocacaoService;
@@ -28,5 +29,17 @@ public class LocacaoController {
     public ResponseEntity<List<LocacaoResponse>> findAll() {
         List<LocacaoResponse> locacaoResponses = locacaoService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(locacaoResponses);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<LocacaoResponse> findById(@PathVariable(name = "id") Long id) {
+        LocacaoResponse locacaoResponse = locacaoService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(locacaoResponse);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody UpdateLocacaoRequest updateLocacaoRequest) {
+        locacaoService.update(id, updateLocacaoRequest);
+        return ResponseEntity.noContent().build();
     }
 }
