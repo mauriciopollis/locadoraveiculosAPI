@@ -74,4 +74,12 @@ public class VeiculoService {
         if(updateVeiculoRequest.diaria() != null) veiculo.setDiaria(updateVeiculoRequest.diaria());
         veiculoRepository.save(veiculo);
     }
+
+    public void delete(Long id) {
+        Optional<Veiculo> veiculoDb = veiculoRepository.findById(id);
+        if(veiculoDb.isEmpty()) {
+            throw new ValidacaoException("Veículo de id " + id + " não existe");
+        }
+        veiculoRepository.deleteById(id);
+    }
 }

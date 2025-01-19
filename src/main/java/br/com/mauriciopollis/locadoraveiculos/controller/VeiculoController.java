@@ -43,4 +43,10 @@ public class VeiculoController {
         veiculoService.update(id, updateVeiculoRequest);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
+        veiculoService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
