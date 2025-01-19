@@ -1,17 +1,15 @@
 package br.com.mauriciopollis.locadoraveiculos.controller;
 
-import br.com.mauriciopollis.locadoraveiculos.dto.request.CreateUsuarioRequest;
-import br.com.mauriciopollis.locadoraveiculos.dto.request.UpdateUsuarioRequest;
-import br.com.mauriciopollis.locadoraveiculos.dto.response.CreateUsuarioResponse;
-import br.com.mauriciopollis.locadoraveiculos.dto.response.UsuarioResponse;
-import br.com.mauriciopollis.locadoraveiculos.exception.ValidacaoException;
+import br.com.mauriciopollis.locadoraveiculos.dto.request.usuario.CreateUsuarioRequest;
+import br.com.mauriciopollis.locadoraveiculos.dto.request.usuario.UpdateUsuarioRequest;
+import br.com.mauriciopollis.locadoraveiculos.dto.response.usuario.CreateUsuarioResponse;
+import br.com.mauriciopollis.locadoraveiculos.dto.response.usuario.UsuarioResponse;
 import br.com.mauriciopollis.locadoraveiculos.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

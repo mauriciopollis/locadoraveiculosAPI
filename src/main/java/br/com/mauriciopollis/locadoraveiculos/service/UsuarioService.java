@@ -1,9 +1,9 @@
 package br.com.mauriciopollis.locadoraveiculos.service;
 
-import br.com.mauriciopollis.locadoraveiculos.dto.request.CreateUsuarioRequest;
-import br.com.mauriciopollis.locadoraveiculos.dto.request.UpdateUsuarioRequest;
-import br.com.mauriciopollis.locadoraveiculos.dto.response.CreateUsuarioResponse;
-import br.com.mauriciopollis.locadoraveiculos.dto.response.UsuarioResponse;
+import br.com.mauriciopollis.locadoraveiculos.dto.request.usuario.CreateUsuarioRequest;
+import br.com.mauriciopollis.locadoraveiculos.dto.request.usuario.UpdateUsuarioRequest;
+import br.com.mauriciopollis.locadoraveiculos.dto.response.usuario.CreateUsuarioResponse;
+import br.com.mauriciopollis.locadoraveiculos.dto.response.usuario.UsuarioResponse;
 import br.com.mauriciopollis.locadoraveiculos.entity.Usuario;
 import br.com.mauriciopollis.locadoraveiculos.exception.ValidacaoException;
 import br.com.mauriciopollis.locadoraveiculos.repository.UsuarioRepository;
