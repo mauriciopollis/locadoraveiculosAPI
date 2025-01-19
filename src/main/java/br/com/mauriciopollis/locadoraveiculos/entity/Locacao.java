@@ -1,43 +1,32 @@
 package br.com.mauriciopollis.locadoraveiculos.entity;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.LocalDate;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "locacao")
 public class Locacao {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotNull
+    @Column(nullable = false)
     private Usuario cliente;
+    @NotNull
+    @Column(nullable = false)
     private Veiculo veiculo;
-    private LocalDate dataInicioLocacao;
-    private LocalDate dataFinalLocacao;
+    private LocalDate dataInicio;
+    private LocalDate dataFinal;
 
-    public Usuario getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Usuario cliente) {
-        this.cliente = cliente;
-    }
-
-    public Veiculo getVeiculo() {
-        return veiculo;
-    }
-
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
-    }
-
-    public LocalDate getDataInicioLocacao() {
-        return dataInicioLocacao;
-    }
-
-    public void setDataInicioLocacao(LocalDate dataInicioLocacao) {
-        this.dataInicioLocacao = dataInicioLocacao;
-    }
-
-    public LocalDate getDataFinalLocacao() {
-        return dataFinalLocacao;
-    }
-
-    public void setDataFinalLocacao(LocalDate dataFinalLocacao) {
-        this.dataFinalLocacao = dataFinalLocacao;
-    }
 }
