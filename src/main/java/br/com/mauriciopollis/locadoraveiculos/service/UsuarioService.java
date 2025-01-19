@@ -57,4 +57,12 @@ public class UsuarioService {
         if(updateUsuarioRequest.senha() != null) usuario.setSenha(updateUsuarioRequest.senha());
         usuarioRepository.save(usuario);
     }
+
+    public void deleteById(Long id) {
+        Optional<Usuario> usuarioDb = usuarioRepository.findById(id);
+        if(usuarioDb.isEmpty()) {
+            throw new ValidacaoException("Usuário de id " + id + " não existe");
+        }
+        usuarioRepository.deleteById(id);
+    }
 }

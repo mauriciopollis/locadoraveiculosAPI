@@ -46,8 +46,8 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete() {
-        // recuperar o usuário do banco
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
+        usuarioService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
