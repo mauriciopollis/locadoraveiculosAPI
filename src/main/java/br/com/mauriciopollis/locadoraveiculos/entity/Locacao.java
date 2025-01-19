@@ -22,13 +22,9 @@ public class Locacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(nullable = false)
     @ManyToOne
     private Usuario cliente;
 
-    @NotNull
-    @Column(nullable = false)
     @ManyToOne
     private Veiculo veiculo;
 
