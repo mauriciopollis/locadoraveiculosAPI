@@ -1,6 +1,8 @@
 C:\Users\mauri\intellij-workspace\locadora-veiculos\locadoraveiculosAPI\src\main\java\br\com\mauriciopollis\locadoraveiculos\controller\UsuarioController.java
 C:\Users\mauri\intellij-workspace\locadora-veiculos\locadoraveiculosAPI\src\main\java\br\com\mauriciopollis\locadoraveiculos\dto\request\CreateUsuarioRequest.java
+C:\Users\mauri\intellij-workspace\locadora-veiculos\locadoraveiculosAPI\src\main\java\br\com\mauriciopollis\locadoraveiculos\dto\request\UpdateUsuarioRequest.java
 C:\Users\mauri\intellij-workspace\locadora-veiculos\locadoraveiculosAPI\src\main\java\br\com\mauriciopollis\locadoraveiculos\dto\response\CreateUsuarioResponse.java
+C:\Users\mauri\intellij-workspace\locadora-veiculos\locadoraveiculosAPI\src\main\java\br\com\mauriciopollis\locadoraveiculos\dto\response\UsuarioResponse.java
 C:\Users\mauri\intellij-workspace\locadora-veiculos\locadoraveiculosAPI\src\main\java\br\com\mauriciopollis\locadoraveiculos\entity\Locacao.java
 C:\Users\mauri\intellij-workspace\locadora-veiculos\locadoraveiculosAPI\src\main\java\br\com\mauriciopollis\locadoraveiculos\entity\Usuario.java
 C:\Users\mauri\intellij-workspace\locadora-veiculos\locadoraveiculosAPI\src\main\java\br\com\mauriciopollis\locadoraveiculos\entity\Veiculo.java
