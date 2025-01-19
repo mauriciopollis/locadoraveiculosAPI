@@ -2,6 +2,7 @@ package br.com.mauriciopollis.locadoraveiculos.service;
 
 import br.com.mauriciopollis.locadoraveiculos.dto.request.locacao.CreateLocacaoRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.locacao.CreateLocacaoResponse;
+import br.com.mauriciopollis.locadoraveiculos.dto.response.locacao.LocacaoResponse;
 import br.com.mauriciopollis.locadoraveiculos.entity.Locacao;
 import br.com.mauriciopollis.locadoraveiculos.entity.Usuario;
 import br.com.mauriciopollis.locadoraveiculos.entity.Veiculo;
@@ -13,6 +14,7 @@ import br.com.mauriciopollis.locadoraveiculos.repository.VeiculoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,5 +47,21 @@ public class LocacaoService {
 
         locacaoRepository.save(locacao);
         return new CreateLocacaoResponse(locacao.getId());
+    }
+
+    public List<LocacaoResponse> findAll() {
+        List<LocacaoResponse> locacaoResponses = locacaoRepository
+                .findAll()
+                .stream()
+                .map(l -> new LocacaoResponse(
+                        l.getId(),
+                        l.getCliente(),
+                        l.getVeiculo(),
+                        l.getDataInicio(),
+                        l.getDataFinal(),
+                        l.getStatus())
+                )
+                .toList();
+        return locacaoResponses;
     }
 }
