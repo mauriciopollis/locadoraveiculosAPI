@@ -4,11 +4,13 @@ import br.com.mauriciopollis.locadoraveiculos.dto.request.veiculo.CreateVeiculoR
 import br.com.mauriciopollis.locadoraveiculos.dto.response.veiculo.CreateVeiculoResponse;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.veiculo.VeiculoResponse;
 import br.com.mauriciopollis.locadoraveiculos.entity.Veiculo;
+import br.com.mauriciopollis.locadoraveiculos.exception.ValidacaoException;
 import br.com.mauriciopollis.locadoraveiculos.repository.VeiculoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -42,5 +44,23 @@ public class VeiculoService {
                         v.getTipo()))
                 .toList();
         return veiculoResponses;
+    }
+
+    public VeiculoResponse findById(Long id) {
+        Optional<Veiculo> veiculoDb = veiculoRepository.findById(id);
+        if(veiculoDb.isEmpty()) {
+            throw new ValidacaoException("Veículo de id " + id + " não existe");
+        }
+        VeiculoResponse veiculoResponse = new VeiculoResponse(
+                veiculoDb.get().getId(),
+                veiculoDb.get().getMarca(),
+                veiculoDb.get().getModelo(),
+                veiculoDb.get().getPlaca(),
+                veiculoDb.get().getAno(),
+                veiculoDb.get().getDiaria(),
+                veiculoDb.get().getTipo()
+        );
+        return veiculoResponse;
+
     }
 }

@@ -29,4 +29,10 @@ public class VeiculoController {
         List<VeiculoResponse> veiculoResponses = veiculoService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(veiculoResponses);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<VeiculoResponse> findById(@PathVariable(name = "id") Long id) {
+        VeiculoResponse veiculoResponse = veiculoService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(veiculoResponse);
+    }
 }
