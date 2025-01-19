@@ -1,5 +1,6 @@
 package br.com.mauriciopollis.locadoraveiculos.entity;
 
+import br.com.mauriciopollis.locadoraveiculos.entity.enums.StatusLocacaoEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -28,5 +29,6 @@ public class Locacao {
     private Veiculo veiculo;
     private LocalDate dataInicio;
     private LocalDate dataFinal;
-
+    @Enumerated(EnumType.STRING)
+    private StatusLocacaoEnum status;
 }
