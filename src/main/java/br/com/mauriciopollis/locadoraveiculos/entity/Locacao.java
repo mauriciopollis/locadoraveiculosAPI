@@ -21,14 +21,20 @@ public class Locacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
     @Column(nullable = false)
+    @ManyToOne
     private Usuario cliente;
+
     @NotNull
     @Column(nullable = false)
+    @ManyToOne
     private Veiculo veiculo;
+
     private LocalDate dataInicio;
     private LocalDate dataFinal;
+
     @Enumerated(EnumType.STRING)
     private StatusLocacaoEnum status;
 }
