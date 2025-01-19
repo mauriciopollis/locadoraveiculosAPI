@@ -29,7 +29,7 @@ public class UsuarioService {
         return new CreateUsuarioResponse(usuario.getId());
     }
 
-    public List<UsuarioResponse> getAllUsers() {
+    public List<UsuarioResponse> findAll() {
         List<Usuario> usuarios = usuarioRepository.findAll();
         List<UsuarioResponse> usuarioResponses = usuarios
                 .stream()
