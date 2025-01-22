@@ -2,12 +2,16 @@ package br.com.mauriciopollis.locadoraveiculos.service;
 
 import br.com.mauriciopollis.locadoraveiculos.dto.request.veiculo.CreateVeiculoRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.request.veiculo.UpdateVeiculoRequest;
+import br.com.mauriciopollis.locadoraveiculos.dto.request.veiculo.VeiculoFilterRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.veiculo.CreateVeiculoResponse;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.veiculo.VeiculoResponse;
+import br.com.mauriciopollis.locadoraveiculos.dto.response.veiculo.VeiculoResponsePage;
 import br.com.mauriciopollis.locadoraveiculos.entity.Veiculo;
 import br.com.mauriciopollis.locadoraveiculos.exception.ValidacaoException;
 import br.com.mauriciopollis.locadoraveiculos.repository.VeiculoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,20 +35,34 @@ public class VeiculoService {
         return new CreateVeiculoResponse(veiculo.getId());
     }
 
-    public List<VeiculoResponse> findAll() {
-        List<VeiculoResponse> veiculoResponses = veiculoRepository
-                .findAll()
+    public VeiculoResponsePage findAll(VeiculoFilterRequest veiculoFilterRequest) {
+
+        Page<Veiculo> veiculoPage = veiculoRepository
+                .findAllByMarcaContainsIgnoreCase(
+                        veiculoFilterRequest.filter(),
+                        PageRequest.of(veiculoFilterRequest.page(), veiculoFilterRequest.size())
+                );
+
+        List<VeiculoResponse> content = veiculoPage
+                .getContent()
                 .stream()
-                .map(v -> new VeiculoResponse(
-                        v.getId(),
-                        v.getMarca(),
-                        v.getModelo(),
-                        v.getPlaca(),
-                        v.getAno(),
-                        v.getDiaria(),
-                        v.getTipo()))
+                .map(veiculo -> new VeiculoResponse(
+                        veiculo.getId(),
+                        veiculo.getMarca(),
+                        veiculo.getModelo(),
+                        veiculo.getPlaca(),
+                        veiculo.getAno(),
+                        veiculo.getDiaria(),
+                        veiculo.getTipo()))
                 .toList();
-        return veiculoResponses;
+
+        VeiculoResponsePage veiculoResponsePage = new VeiculoResponsePage(
+                veiculoPage.getTotalPages(),
+                veiculoPage.getSize(),
+                content
+        );
+
+        return veiculoResponsePage;
     }
 
     public VeiculoResponse findById(Long id) {

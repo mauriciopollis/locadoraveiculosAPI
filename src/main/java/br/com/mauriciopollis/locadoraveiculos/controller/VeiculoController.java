@@ -2,8 +2,10 @@ package br.com.mauriciopollis.locadoraveiculos.controller;
 
 import br.com.mauriciopollis.locadoraveiculos.dto.request.veiculo.CreateVeiculoRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.request.veiculo.UpdateVeiculoRequest;
+import br.com.mauriciopollis.locadoraveiculos.dto.request.veiculo.VeiculoFilterRequest;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.veiculo.CreateVeiculoResponse;
 import br.com.mauriciopollis.locadoraveiculos.dto.response.veiculo.VeiculoResponse;
+import br.com.mauriciopollis.locadoraveiculos.dto.response.veiculo.VeiculoResponsePage;
 import br.com.mauriciopollis.locadoraveiculos.service.VeiculoService;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
@@ -27,9 +29,9 @@ public class VeiculoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<VeiculoResponse>> findAll() {
-        List<VeiculoResponse> veiculoResponses = veiculoService.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(veiculoResponses);
+    public ResponseEntity<VeiculoResponsePage> findAll(VeiculoFilterRequest veiculoFilterRequest) {
+        VeiculoResponsePage veiculoResponsePage = veiculoService.findAll(veiculoFilterRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(veiculoResponsePage);
     }
 
     @GetMapping("/{id}")
