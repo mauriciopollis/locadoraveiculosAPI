@@ -57,8 +57,8 @@ public class VeiculoService {
                 .toList();
 
         VeiculoResponsePage veiculoResponsePage = new VeiculoResponsePage(
+                veiculoPage.getTotalElements(),
                 veiculoPage.getTotalPages(),
-                veiculoPage.getSize(),
                 content
         );
 
